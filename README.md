@@ -16,28 +16,6 @@
 
 ---
 
-</div>
-
-## 📸 Screenshots
-
-<div align="center">
-
-| Home | 360° Virtual Tour |
-|:---:|:---:|
-| ![Home](./screenshots/home.png) | ![360VT](./screenshots/360vt.png) |
-
-| Cultural Calendar | Explore & Map |
-|:---:|:---:|
-| ![Calendar](./screenshots/calendar.png) | ![Map](./screenshots/map.png) |
-
-| Shop | Plan Your Visit |
-|:---:|:---:|
-| ![Shop](./screenshots/shop.png) | ![Plan](./screenshots/plan.png) |
-
-</div>
-
----
-
 ## ✨ Features
 
 | Feature | Description |
@@ -131,26 +109,13 @@
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome!
-
-```bash
-git checkout -b feature/YourFeature
-git commit -m "Add YourFeature"
-git push origin feature/YourFeature
-# Open a Pull Request
-```
-
----
-
 ## 📞 Contact
 
 | Info | Details |
 |------|---------|
 | 📧 Email | info@monastery360.com |
 | 📍 Location | Gangtok, Sikkim, India |
-| 📞 Phone | +91 96256 36326 |
+| 📞 Phone | +91 96256 00000 |
 
 ---
 
