@@ -109,16 +109,6 @@
 
 ---
 
-## 📞 Contact
-
-| Info | Details |
-|------|---------|
-| 📧 Email | info@monastery360.com |
-| 📍 Location | Gangtok, Sikkim, India |
-| 📞 Phone | +91 96256 00000 |
-
----
-
 ## 📄 License
 
 Licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
