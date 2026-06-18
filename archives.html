@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- Navigation -->
+    
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -53,7 +53,6 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">Digital Archives</h1>
@@ -61,10 +60,9 @@
         </div>
     </section>
 
-    <!-- Archives Section -->
     <section class="content-section">
         <div class="container">
-            <!-- Search and Filter Controls -->
+            
             <div class="archives-controls">
                 <div class="search-box">
                     <input type="text" id="archive-search" placeholder="Search archives..." class="search-input">
@@ -88,9 +86,8 @@
                 </div>
             </div>
 
-            <!-- Archives Grid -->
             <div class="archives-grid" id="archives-grid">
-                <!-- Manuscripts -->
+                
                 <div class="archive-card" data-category="manuscripts" data-year="pre-1800">
                     <div class="archive-image">
                         <img src="public/manuscript.jpg" alt="Ancient Buddhist Manuscript">
@@ -127,7 +124,6 @@
                     </div>
                 </div>
 
-                <!-- Murals -->
                 <div class="archive-card" data-category="murals" data-year="pre-1800">
                     <div class="archive-image">
                         <img src="public/folkartpaint.jpg" alt="Traditional Mural Art">
@@ -164,7 +160,6 @@
                     </div>
                 </div>
 
-                <!-- Historical Documents -->
                 <div class="archive-card" data-category="historical" data-year="1800-1900">
                     <div class="archive-image">
                         <img src="public/rumtek.jpeg" alt="Monastery Foundation Document">
@@ -238,7 +233,6 @@
                 </div>
             </div>
 
-            <!-- No Results Message -->
             <div class="no-results" id="no-results" style="display: none;">
                 <i class="fas fa-search"></i>
                 <h3>No Archives Found</h3>
@@ -247,7 +241,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -282,7 +275,7 @@
                         <li><a href="transport.html">Transport</a></li>
                         <li><a href="archives.html">Digital Archives</a></li>
                         <li><a href="login.html">Login/SignUp</a></li>
-                        <!-- <li><a href="login.html">Sign Up</a></li> -->
+                        
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -300,14 +293,13 @@
         </div>
     </footer>
 
-    <!-- Dark Mode Toggle -->
     <button class="dark-mode-toggle" id="dark-mode-toggle">
         <i class="fas fa-moon"></i>
     </button>
 
     <script src="script.js"></script>
     <script>
-        // Digital Archives page specific functionality
+        
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('archive-search');
             const categoryFilter = document.getElementById('category-filter');
@@ -316,7 +308,6 @@
             const noResults = document.getElementById('no-results');
             const archiveCards = document.querySelectorAll('.archive-card');
 
-            // Filter and search functionality
             function filterArchives() {
                 const searchTerm = searchInput.value.toLowerCase();
                 const selectedCategory = categoryFilter.value;
@@ -342,7 +333,6 @@
                     }
                 });
 
-                // Show/hide no results message
                 if (visibleCount === 0) {
                     noResults.style.display = 'block';
                     archivesGrid.style.display = 'none';
@@ -352,12 +342,10 @@
                 }
             }
 
-            // Event listeners
             searchInput.addEventListener('input', filterArchives);
             categoryFilter.addEventListener('change', filterArchives);
             yearFilter.addEventListener('change', filterArchives);
 
-            // Archive card click handler for modal preview
             archiveCards.forEach(card => {
                 card.addEventListener('click', function() {
                     const title = this.querySelector('h3').textContent;
@@ -366,8 +354,7 @@
                     const year = this.querySelector('.archive-year').textContent;
                     const monastery = this.querySelector('.archive-monastery').textContent;
                     const imageSrc = this.querySelector('img').src;
-                    
-                    // Create modal content
+
                     const modalContent = `
                         <div class="archive-modal">
                             <div class="archive-modal-image">
@@ -392,12 +379,10 @@
                             </div>
                         </div>
                     `;
-                    
-                    // Show modal (using existing modal system)
+
                     const modal = createModal(modalContent, 'archive-modal');
                     showModal(modal);
-                    
-                    // Handle modal close
+
                     modal.querySelector('.modal-close').addEventListener('click', () => {
                         hideModal(modal);
                     });
@@ -405,12 +390,10 @@
             });
         });
 
-        // Download archive function
         function downloadArchive(title) {
             alert(`Download functionality would be implemented here for: ${title}`);
         }
 
-        // Share archive function
         function shareArchive(title) {
             if (navigator.share) {
                 navigator.share({
@@ -419,7 +402,7 @@
                     url: window.location.href
                 });
             } else {
-                // Fallback to copying URL
+                
                 navigator.clipboard.writeText(window.location.href);
                 alert('Archive link copied to clipboard!');
             }

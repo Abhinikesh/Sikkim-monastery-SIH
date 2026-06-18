@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -32,7 +32,6 @@ body {
   padding: 0 20px;
 }
 
-/* Navigation Styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -107,7 +106,6 @@ body {
   width: 100%;
 }
 
-/* Navbar Search */
 .nav-search {
   flex: 1;
   max-width: 400px;
@@ -254,7 +252,6 @@ body {
   background: var(--text-dark);
 }
 
-/* Hero Section */
 .hero {
   height: 100vh;
   position: relative;
@@ -265,11 +262,11 @@ body {
 }
 
 .hero-video {
-  background-image: url("public/sikkim2.jpg"); /* ✅ no /public */
+  background-image: url("public/sikkim2.jpg"); 
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 100vh; /* full screen */
+  height: 100vh; 
 }
 
 .hero-video {
@@ -382,7 +379,6 @@ body {
   transform: rotate(-45deg);
 }
 
-/* Section Styles */
 section {
   padding: 100px 0;
   opacity: 0;
@@ -428,7 +424,6 @@ section.animate {
   margin: 0 auto;
 }
 
-/* Monasteries Section */
 .monasteries {
   background: #f8f9fa;
 }
@@ -463,8 +458,6 @@ section.animate {
 .monastery-card:nth-child(3) {
   animation-delay: 0.3s;
 }
-
-
 
 .monastery-card:hover {
   transform: translateY(-15px) rotateY(5deg);
@@ -551,10 +544,6 @@ section.animate {
   box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
 }
 
-
-
-/* Cultural Calendar Section */
-/* Cultural Calendar Section Enhancements */
 .cultural-calendar {
   position: relative;
   background:
@@ -568,24 +557,20 @@ section.animate {
   overflow: hidden;
 }
 
-/* Add blurred overlay effect */
 .cultural-calendar::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.3); /* Optional: dark tint */
-  backdrop-filter: blur(6px);     /* <--- this adds the blur effect */
-  -webkit-backdrop-filter: blur(6px); /* for Safari support */
+  background: rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(6px);     
+  -webkit-backdrop-filter: blur(6px); 
   z-index: 1;
 }
 
-/* Ensure content is above the overlay */
 .cultural-calendar > * {
   position: relative;
   z-index: 2;
 }
-
-
 
 .cultural-calendar > * {
   position: relative;
@@ -605,7 +590,6 @@ section.animate {
   margin-bottom: 2rem;
 }
 
-/* Calendar Filters */
 .calendar-filters {
   display: flex;
   justify-content: center;
@@ -653,7 +637,6 @@ section.animate {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
 
 @keyframes drift {
   0% { background-position: 0 0; }
@@ -762,7 +745,6 @@ section.animate {
   line-height: 1.6;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .timeline::before {
     left: 20px;
@@ -778,7 +760,6 @@ section.animate {
   }
 }
 
-/* Explore Sikkim Section */
 .explore-sikkim {
   height: 80vh;
   position: relative;
@@ -829,7 +810,6 @@ section.animate {
   opacity: 0.9;
 }
 
-/* Gallery Section */
 .gallery {
   background: #f8f9fa;
 }
@@ -861,7 +841,6 @@ section.animate {
 .gallery-item:nth-child(3) {
   animation-delay: 0.3s;
 }
-
 
 .gallery-item:hover {
   transform: scale(1.05) rotateZ(2deg);
@@ -918,7 +897,6 @@ section.animate {
 
 }
 
-/* Tourist Info Section */
 .tourist-info {
   background: var(--bg-light);
 }
@@ -1041,7 +1019,6 @@ section.animate {
   transform: translateY(-2px);
 }
 
-/* Footer */
 .footer {
   background: var(--text-dark);
   color: var(--text-light);
@@ -1143,7 +1120,6 @@ section.animate {
   opacity: 0.6;
 }
 
-/* Dark Mode Toggle */
 .dark-mode-toggle {
   position: fixed;
   bottom: 30px;
@@ -1168,7 +1144,6 @@ section.animate {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Dark Mode Styles */
 body.dark-mode {
   background-color: var(--bg-dark);
   color: var(--text-light);
@@ -1221,7 +1196,6 @@ body.dark-mode .tourist-info {
   background: var(--bg-dark);
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1356,7 +1330,6 @@ body.dark-mode .tourist-info {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .nav-menu {
     position: fixed;
@@ -1462,7 +1435,6 @@ body.dark-mode .tourist-info {
   }
 }
 
-/* Featured Monasteries Section */
 .monasteries {
   padding: 60px 20px;
   background: #f9f9f9;
@@ -1485,14 +1457,12 @@ body.dark-mode .tourist-info {
   margin-top: 10px;
 }
 
-/* Grid Layout */
 .monasteries-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
 
-/* Monastery Card */
 .monastery-card {
   background: #fff;
   border-radius: 12px;
@@ -1506,14 +1476,12 @@ body.dark-mode .tourist-info {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Card Image */
 .monastery-img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-/* Card Info */
 .monastery-info {
   padding: 20px;
   text-align: center;
@@ -1531,7 +1499,6 @@ body.dark-mode .tourist-info {
   margin-bottom: 15px;
 }
 
-/* Button */
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -1546,7 +1513,6 @@ body.dark-mode .tourist-info {
   background: #023e8a;
 }
 
-/* Monasteries Section */
 .monasteries {
   position: relative;
   background: url('public/sikkim-feature-compressed-686x400.jpg') center/cover no-repeat;
@@ -1554,7 +1520,6 @@ body.dark-mode .tourist-info {
   z-index: 1;
 }
 
-/* White blur overlay */
 .monasteries::before {
   content: "";
   position: absolute;
@@ -1562,14 +1527,13 @@ body.dark-mode .tourist-info {
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(5px); /* stronger blur */
-  background: rgba(255, 255, 255, 0.6); /* white translucent overlay */
+  backdrop-filter: blur(5px); 
+  background: rgba(255, 255, 255, 0.6); 
   z-index: -1;
 }
 
-/* Monastery Cards (clear on top of blur) */
 .monastery-card {
-  background: rgba(255, 255, 255, 0.85); /* frosted glass */
+  background: rgba(255, 255, 255, 0.85); 
   backdrop-filter: blur(8px);
   border-radius: 15px;
   overflow: hidden;
@@ -1581,7 +1545,6 @@ body.dark-mode .tourist-info {
   transform: translateY(-8px);
 }
 
-/* Monastery Video Thumbnails */
 .monastery-video {
   position: relative;
   height: 250px;
@@ -1626,7 +1589,6 @@ body.dark-mode .tourist-info {
   transform: translateY(-2px);
 }
 
-/* Login/Signup Button Styles */
 .login-btn, .signup-btn {
   background: var(--primary-color);
   color: white !important;
@@ -1645,7 +1607,6 @@ body.dark-mode .tourist-info {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Timeline Footer */
 .timeline-footer {
   text-align: center;
   margin-top: 3rem;
@@ -1667,7 +1628,6 @@ body.dark-mode .tourist-info {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Explore Map Section */
 .explore-map {
   background: #f8f9fa;
   padding: 100px 0;
@@ -1745,7 +1705,6 @@ body.dark-mode .tourist-info {
   transform: translateY(-2px);
 }
 
-/* Shop Section */
 .shop {
   background: white;
   padding: 100px 0;
@@ -1828,14 +1787,12 @@ body.dark-mode .tourist-info {
   transform: translateY(-2px);
 }
 
-/* Gallery Enhancements */
 .gallery-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Plan Your Visit Section */
 .plan-visit {
   background: #f8f9fa;
   padding: 100px 0;
@@ -1926,7 +1883,6 @@ body.dark-mode .tourist-info {
   transform: translateY(-2px);
 }
 
-/* Page Headers */
 .page-header {
   background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   color: white;
@@ -1948,13 +1904,11 @@ body.dark-mode .tourist-info {
   margin: 0 auto;
 }
 
-/* Content Sections */
 .content-section {
   padding: 80px 0;
   background: white;
 }
 
-/* Festivals Page */
 .festivals-section {
   padding: 80px 0;
   background: #f8f9fa;
@@ -2032,7 +1986,6 @@ body.dark-mode .tourist-info {
   text-decoration: underline;
 }
 
-/* Travel Tips Page */
 .tips-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -2079,7 +2032,6 @@ body.dark-mode .tourist-info {
   line-height: 1.6;
 }
 
-/* Cuisine Page */
 .cuisine-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -2132,7 +2084,6 @@ body.dark-mode .tourist-info {
   line-height: 1.6;
 }
 
-/* Accommodation Page */
 .accommodation-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -2219,7 +2170,6 @@ body.dark-mode .tourist-info {
   transform: translateY(-2px);
 }
 
-/* Modal System */
 .modal {
   position: fixed;
   top: 0;
@@ -2290,7 +2240,6 @@ body.dark-mode .tourist-info {
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* Video Player Modal */
 .video-player {
   padding: 2rem;
   text-align: center;
@@ -2315,7 +2264,6 @@ body.dark-mode .tourist-info {
   margin-bottom: 0;
 }
 
-/* Narration Controls */
 .narration-controls {
   margin-top: 1.5rem;
   padding: 1rem;
@@ -2353,7 +2301,6 @@ body.dark-mode .tourist-info {
   margin-top: 0.5rem;
 }
 
-/* Image Lightbox Modal */
 .image-lightbox {
   padding: 2rem;
   text-align: center;
@@ -2372,7 +2319,6 @@ body.dark-mode .tourist-info {
   font-style: italic;
 }
 
-/* Shop Modal */
 .shop-modal {
   padding: 2rem;
   max-width: 500px;
@@ -2455,7 +2401,6 @@ body.dark-mode .tourist-info {
   border-color: #ccc;
 }
 
-/* Map Popup Styles */
 .map-popup .lets-go-btn {
   background: var(--primary-color);
   color: white;
@@ -2472,7 +2417,6 @@ body.dark-mode .tourist-info {
   transform: translateY(-1px);
 }
 
-/* Transport Options in Map Popup */
 .transport-options {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -2538,7 +2482,6 @@ body.dark-mode .tourist-info {
   transform: translateY(-1px);
 }
 
-/* Leaflet Map Styles */
 #map {
   height: 500px;
   border-radius: 15px;
@@ -2568,7 +2511,6 @@ body.dark-mode .tourist-info {
   font-size: 0.9rem;
 }
 
-/* Transport Booking Page */
 .transport-booking-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -2745,7 +2687,6 @@ body.dark-mode .tourist-info {
   font-weight: bold;
 }
 
-/* Responsive Design for New Sections */
 @media (max-width: 768px) {
   .map-container {
     grid-template-columns: 1fr;
@@ -2806,7 +2747,6 @@ body.dark-mode .tourist-info {
   }
 }
 
-/* Digital Archives Page */
 .archives-controls {
   display: flex;
   gap: 1rem;
@@ -2987,7 +2927,6 @@ body.dark-mode .tourist-info {
   margin-bottom: 1rem;
 }
 
-/* Archive Modal */
 .archive-modal {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -3085,7 +3024,6 @@ body.dark-mode .tourist-info {
   border-color: #ccc;
 }
 
-/* Responsive Design for Archives */
 @media (max-width: 768px) {
   .archives-controls {
     flex-direction: column;
@@ -3114,7 +3052,6 @@ body.dark-mode .tourist-info {
   }
 }
 
-/* Search Page */
 .search-form-container {
   margin-bottom: 3rem;
 }
@@ -3310,7 +3247,6 @@ body.dark-mode .tourist-info {
   font-weight: bold;
 }
 
-/* Responsive Design for Search Page */
 @media (max-width: 768px) {
   .search-input-group {
     flex-direction: column;
@@ -3341,7 +3277,6 @@ body.dark-mode .tourist-info {
     padding: 1.5rem;
   }
 
-  /* Mobile navbar search adjustments */
   .nav-search {
     order: -1;
     width: 100%;
@@ -3362,17 +3297,14 @@ body.dark-mode .tourist-info {
     order: 2;
   }
 
-  /* Mobile calendar filters */
   .calendar-filters {
     margin-top: 1rem;
   }
 
-  /* Mobile transport booking */
   .transport-booking-container {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile archives */
   .archives-controls {
     flex-direction: column;
     align-items: stretch;
@@ -3382,7 +3314,6 @@ body.dark-mode .tourist-info {
     min-width: auto;
   }
 
-  /* Mobile search suggestions */
   .search-suggestions {
     position: fixed;
     top: 70px;
@@ -3391,14 +3322,12 @@ body.dark-mode .tourist-info {
     max-height: 50vh;
   }
 
-  /* Mobile modal improvements */
   .modal-content {
     margin: 20px;
     max-width: calc(100vw - 40px);
     max-height: calc(100vh - 40px);
   }
 
-  /* Mobile narration controls */
   .narration-controls {
     padding: 0.8rem;
   }

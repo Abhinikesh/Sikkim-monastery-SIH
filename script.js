@@ -1,24 +1,12 @@
-// Monastery360 — Sikkim JavaScript Functionality
-// Modular implementation with clear separation of concerns
 
-// ============================================================================
-// GLOBAL VARIABLES AND UTILITIES
-// ============================================================================
 
-// DOM Elements
 const navbar = document.getElementById("navbar");
 const mobileMenu = document.getElementById("mobile-menu");
 const navMenu = document.getElementById("nav-menu");
 const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-// Modal system
 let currentModal = null;
 
-// ============================================================================
-// UTILITY FUNCTIONS
-// ============================================================================
-
-// Create modal element
 function createModal(content, className = '') {
   const modal = document.createElement('div');
   modal.className = `modal ${className}`;
@@ -32,19 +20,16 @@ function createModal(content, className = '') {
   return modal;
 }
 
-// Show modal
 function showModal(modal) {
   document.body.appendChild(modal);
   document.body.style.overflow = 'hidden';
   currentModal = modal;
-  
-  // Animate in
+
   setTimeout(() => {
     modal.classList.add('active');
   }, 10);
 }
 
-// Hide modal
 function hideModal(modal) {
   modal.classList.remove('active');
   setTimeout(() => {
@@ -56,57 +41,7 @@ function hideModal(modal) {
   }, 300);
 }
 
-// ============================================================================
-// NARRATION AUDIO FUNCTIONALITY
-// ============================================================================
-
-// Get narration audio source based on monastery and language
-function getNarrationAudioSrc(monasteryName, language) {
-  // Placeholder audio files - replace with actual audio files later
-  const audioFiles = {
-    'Rumtek Monastery': {
-      english: 'public/audio/rumtek-english.mp3',
-      hindi: 'public/audio/rumtek-hindi.mp3',
-      nepali: 'public/audio/rumtek-nepali.mp3',
-      tibetan: 'public/audio/rumtek-tibetan.mp3'
-    },
-    'Enchey Monastery': {
-      english: 'public/audio/enchey-english.mp3',
-      hindi: 'public/audio/enchey-hindi.mp3',
-      nepali: 'public/audio/enchey-nepali.mp3',
-      tibetan: 'public/audio/enchey-tibetan.mp3'
-    },
-    'Pemayangtse Monastery': {
-      english: 'public/audio/pemayangtse-english.mp3',
-      hindi: 'public/audio/pemayangtse-hindi.mp3',
-      nepali: 'public/audio/pemayangtse-nepali.mp3',
-      tibetan: 'public/audio/pemayangtse-tibetan.mp3'
-    },
-    'Tashiding Monastery': {
-      english: 'public/audio/tashiding-english.mp3',
-      hindi: 'public/audio/tashiding-hindi.mp3',
-      nepali: 'public/audio/tashiding-nepali.mp3',
-      tibetan: 'public/audio/tashiding-tibetan.mp3'
-    },
-    'Phodong Monastery': {
-      english: 'public/audio/phodong-english.mp3',
-      hindi: 'public/audio/phodong-hindi.mp3',
-      nepali: 'public/audio/phodong-nepali.mp3',
-      tibetan: 'public/audio/phodong-tibetan.mp3'
-    }
-  };
-  
-  return audioFiles[monasteryName]?.[language] || null;
-}
-
-// ============================================================================
-// VIDEO FUNCTIONALITY
-// ============================================================================
-
 function initVideos() {
-  console.log('Initializing video functionality...');
-  
-  // Intersection Observer for video autoplay
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const video = entry.target.querySelector('video');
@@ -120,13 +55,11 @@ function initVideos() {
     });
   }, { threshold: 0.5 });
 
-  // Observe monastery video cards
   const monasteryCards = document.querySelectorAll('.monastery-card');
   monasteryCards.forEach(card => {
     videoObserver.observe(card);
   });
 
-  // Video modal functionality
   const exploreButtons = document.querySelectorAll('[data-action="explore-360vt"]');
   exploreButtons.forEach(button => {
     button.addEventListener('click', (e) => {
@@ -147,43 +80,11 @@ function initVideos() {
             </video>
             <h3>${title}</h3>
             <p>Experience the 360° virtual tour of ${title}</p>
-            <div class="narration-controls">
-              <label for="narration-language">Select Narration Language:</label>
-              <select id="narration-language" class="language-selector">
-                <option value="english">English</option>
-                <option value="hindi">हिन्दी (Hindi)</option>
-                <option value="nepali">नेपाली (Nepali)</option>
-                <option value="tibetan">བོད་ཡིག (Tibetan)</option>
-              </select>
-              <audio id="narration-audio" controls style="display: none;">
-                <source src="#" type="audio/mpeg">
-                Your browser does not support the audio element.
-              </audio>
-            </div>
           </div>
         `, 'video-modal');
         
         showModal(videoModal);
         
-        // Handle language selection and audio playback
-        const languageSelector = videoModal.querySelector('#narration-language');
-        const audioElement = videoModal.querySelector('#narration-audio');
-        
-        languageSelector.addEventListener('change', (e) => {
-          const selectedLanguage = e.target.value;
-          const audioSrc = getNarrationAudioSrc(title, selectedLanguage);
-          
-          if (audioSrc) {
-            audioElement.querySelector('source').src = audioSrc;
-            audioElement.load();
-            audioElement.style.display = 'block';
-            audioElement.play().catch(e => console.log('Audio autoplay prevented:', e));
-          } else {
-            audioElement.style.display = 'none';
-          }
-        });
-        
-        // Handle modal close
         videoModal.querySelector('.modal-close').addEventListener('click', () => {
           hideModal(videoModal);
         });
@@ -196,21 +97,15 @@ function initVideos() {
   });
 }
 
-// ============================================================================
-// MODAL SYSTEM
-// ============================================================================
-
 function initModals() {
   console.log('Initializing modal system...');
-  
-  // ESC key to close modal
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && currentModal) {
       hideModal(currentModal);
     }
   });
-  
-  // Close modal when clicking backdrop
+
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('modal-backdrop') && currentModal) {
       hideModal(currentModal);
@@ -218,32 +113,24 @@ function initModals() {
   });
 }
 
-// ============================================================================
-// MAP FUNCTIONALITY
-// ============================================================================
-
 function initMap() {
   console.log('Initializing map functionality...');
   
   const mapContainer = document.getElementById('map');
   if (!mapContainer) return;
-  
-  // Check if Leaflet is loaded
+
   if (typeof L === 'undefined') {
     console.warn('Leaflet.js not loaded. Loading from CDN...');
     loadLeaflet();
     return;
   }
-  
-  // Initialize map
-  const map = L.map('map').setView([27.3389, 88.6065], 10); // Sikkim coordinates
-  
-  // Add tile layer
+
+  const map = L.map('map').setView([27.3389, 88.6065], 10); 
+
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
-  
-  // Monastery data with coordinates
+
   const monasteries = [
     {
       name: 'Rumtek Monastery',
@@ -276,8 +163,7 @@ function initMap() {
       description: 'A beautiful monastery with stunning murals and traditional architecture, offering a peaceful retreat.'
     }
   ];
-  
-  // Add markers
+
   monasteries.forEach(monastery => {
     const marker = L.marker([monastery.lat, monastery.lng]).addTo(map);
     
@@ -319,8 +205,7 @@ function initMap() {
       </div>
     `);
   });
-  
-  // Handle "Let's go" button clicks
+
   map.on('popupopen', () => {
     const letsGoBtn = document.querySelector('.lets-go-btn');
     if (letsGoBtn) {
@@ -330,8 +215,7 @@ function initMap() {
         openGoogleMapsDirections(lat, lng);
       });
     }
-    
-    // Handle "Book Transport" button clicks
+
     const bookTransportBtn = document.querySelector('.book-transport-btn');
     if (bookTransportBtn) {
       bookTransportBtn.addEventListener('click', () => {
@@ -342,7 +226,6 @@ function initMap() {
   });
 }
 
-// Load Leaflet from CDN
 function loadLeaflet() {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
@@ -358,9 +241,8 @@ function loadLeaflet() {
   document.head.appendChild(script);
 }
 
-// Open Google Maps directions
 function openGoogleMapsDirections(lat, lng) {
-  // Get current location if available
+  
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -369,27 +251,22 @@ function openGoogleMapsDirections(lat, lng) {
         window.open(url, '_blank');
       },
       () => {
-        // Fallback to current location text
+        
         const url = `https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${lat},${lng}`;
         window.open(url, '_blank');
       }
     );
   } else {
-    // Fallback to current location text
+    
     const url = `https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=${lat},${lng}`;
     window.open(url, '_blank');
   }
 }
 
-// Open transport booking page
 function openTransportBooking(monasteryName) {
-  // For now, redirect to transport page with monastery parameter
+  
   window.location.href = `transport.html?monastery=${encodeURIComponent(monasteryName)}`;
 }
-
-// ============================================================================
-// SHOP FUNCTIONALITY
-// ============================================================================
 
 function initShop() {
   console.log('Initializing shop functionality...');
@@ -430,8 +307,7 @@ function initShop() {
       `, 'shop-modal');
       
       showModal(shopModal);
-      
-      // Handle modal close
+
       shopModal.querySelector('.modal-close').addEventListener('click', () => {
         hideModal(shopModal);
       });
@@ -439,20 +315,14 @@ function initShop() {
   });
 }
 
-// Proceed to checkout (placeholder function)
 function proceedToCheckout(productName, price) {
   console.log(`Proceeding to checkout for ${productName} at ₹${price}`);
   alert(`Checkout functionality would be implemented here.\n\nProduct: ${productName}\nPrice: ₹${price}`);
-  
-  // Close modal
+
   if (currentModal) {
     hideModal(currentModal);
   }
 }
-
-// ============================================================================
-// GALLERY FUNCTIONALITY
-// ============================================================================
 
 function initGallery() {
   console.log('Initializing gallery functionality...');
@@ -467,7 +337,7 @@ function initGallery() {
       const video = item.querySelector('.gallery-video');
       
       if (isVideo && video) {
-        // Video modal
+        
         const videoSrc = video.querySelector('source')?.src || video.src;
         const poster = video.poster;
         
@@ -482,7 +352,7 @@ function initGallery() {
         
         showModal(videoModal);
       } else if (image) {
-        // Image lightbox
+        
         const imageSrc = image.src;
         const imageAlt = image.alt;
         
@@ -495,8 +365,7 @@ function initGallery() {
         
         showModal(imageModal);
       }
-      
-      // Handle modal close
+
       if (currentModal) {
         currentModal.querySelector('.modal-close').addEventListener('click', () => {
           hideModal(currentModal);
@@ -506,22 +375,16 @@ function initGallery() {
   });
 }
 
-// ============================================================================
-// NAVBAR FUNCTIONALITY
-// ============================================================================
-
 function initNavbar() {
   console.log('Initializing navbar functionality...');
-  
-  // Mobile menu toggle
+
   if (mobileMenu && navMenu) {
     mobileMenu.addEventListener('click', () => {
       navMenu.classList.toggle('active');
       mobileMenu.classList.toggle('active');
     });
   }
-  
-  // Close mobile menu when clicking on a link
+
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -533,8 +396,7 @@ function initNavbar() {
       }
     });
   });
-  
-  // Sticky navbar effect
+
   window.addEventListener('scroll', () => {
     if (navbar) {
       if (window.scrollY > 100) {
@@ -544,8 +406,7 @@ function initNavbar() {
       }
     }
   });
-  
-  // Smooth scrolling for navigation links
+
   navLinks.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
@@ -563,14 +424,9 @@ function initNavbar() {
   });
 }
 
-// ============================================================================
-// CULTURAL CALENDAR FUNCTIONALITY
-// ============================================================================
-
 function initCulturalCalendar() {
   console.log('Initializing cultural calendar functionality...');
-  
-  // Handle "Explore more festivals" button
+
   const exploreFestivalsBtn = document.querySelector('.explore-festivals-btn');
   if (exploreFestivalsBtn) {
     exploreFestivalsBtn.addEventListener('click', (e) => {
@@ -579,17 +435,15 @@ function initCulturalCalendar() {
     });
   }
 
-  // Handle calendar filtering
   const filterButtons = document.querySelectorAll('.filter-btn');
   const timelineItems = document.querySelectorAll('.timeline-item');
 
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // Update active button
+      
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
-      // Filter timeline items
       const filter = button.dataset.filter;
       
       timelineItems.forEach(item => {
@@ -608,7 +462,6 @@ function initCulturalCalendar() {
         }
       });
 
-      // Update "Explore more" button text based on filter
       if (exploreFestivalsBtn) {
         if (filter === 'rituals') {
           exploreFestivalsBtn.textContent = 'Explore more rituals and ceremonies';
@@ -622,14 +475,9 @@ function initCulturalCalendar() {
   });
 }
 
-// ============================================================================
-// PLAN YOUR VISIT FUNCTIONALITY
-// ============================================================================
-
 function initPlanYourVisit() {
   console.log('Initializing plan your visit functionality...');
-  
-  // Handle "Explore" buttons
+
   const planButtons = document.querySelectorAll('.plan-button');
   planButtons.forEach(button => {
     button.addEventListener('click', (e) => {
@@ -642,10 +490,6 @@ function initPlanYourVisit() {
   });
 }
 
-// ============================================================================
-// DARK MODE FUNCTIONALITY
-// ============================================================================
-
 function initDarkMode() {
   console.log('Initializing dark mode functionality...');
   
@@ -653,8 +497,7 @@ function initDarkMode() {
     darkModeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       const isDarkMode = document.body.classList.contains('dark-mode');
-      
-      // Update icon with animation
+
       const icon = darkModeToggle.querySelector('i');
       darkModeToggle.style.transform = 'scale(0.8) rotateZ(180deg)';
       
@@ -662,13 +505,11 @@ function initDarkMode() {
         icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
         darkModeToggle.style.transform = 'scale(1) rotateZ(0deg)';
       }, 150);
-      
-      // Save preference
+
       localStorage.setItem('darkMode', isDarkMode);
     });
   }
-  
-  // Load dark mode preference
+
   const savedDarkMode = localStorage.getItem('darkMode') === 'true';
   if (savedDarkMode) {
     document.body.classList.add('dark-mode');
@@ -678,14 +519,9 @@ function initDarkMode() {
   }
 }
 
-// ============================================================================
-// ANIMATION SYSTEM
-// ============================================================================
-
 function initAnimations() {
   console.log('Initializing animation system...');
-  
-  // Enhanced Intersection Observer for Animations
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px',
@@ -695,10 +531,9 @@ function initAnimations() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate');
-        
-        // Special handling for different elements
+
         if (entry.target.classList.contains('timeline-item')) {
-          // Stagger timeline animations
+          
           const items = entry.target.parentElement.querySelectorAll('.timeline-item');
           items.forEach((item, index) => {
             setTimeout(() => {
@@ -708,7 +543,7 @@ function initAnimations() {
         }
         
         if (entry.target.tagName === 'SECTION') {
-          // Animate section elements
+          
           const cards = entry.target.querySelectorAll('.monastery-card, .info-card, .gallery-item, .product-card, .festival-card');
           cards.forEach((card, index) => {
             setTimeout(() => {
@@ -720,8 +555,7 @@ function initAnimations() {
       }
     });
   }, observerOptions);
-  
-  // Observe elements for animations
+
   const sections = document.querySelectorAll('section');
   sections.forEach((section) => observer.observe(section));
   
@@ -729,14 +563,9 @@ function initAnimations() {
   timelineItems.forEach((item) => observer.observe(item));
 }
 
-// ============================================================================
-// PARALLAX EFFECTS
-// ============================================================================
-
 function initParallax() {
   console.log('Initializing parallax effects...');
-  
-  // Enhanced Parallax Effect
+
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const parallaxImage = document.querySelector('.parallax-image');
@@ -744,21 +573,18 @@ function initParallax() {
       const speed = scrolled * 0.5;
       parallaxImage.style.transform = `translateY(${speed}px)`;
     }
-    
-    // Parallax effect for hero content
+
     const heroContent = document.querySelector('.hero-content');
     if (heroContent && scrolled < window.innerHeight) {
       const heroSpeed = scrolled * 0.3;
       heroContent.style.transform = `translateY(${heroSpeed}px)`;
     }
   });
-  
-  // Mouse movement parallax effect
+
   document.addEventListener('mousemove', (e) => {
     const mouseX = e.clientX / window.innerWidth;
     const mouseY = e.clientY / window.innerHeight;
-    
-    // Subtle parallax for hero elements
+
     const heroTitle = document.querySelector('.hero-title');
     const heroSubtitle = document.querySelector('.hero-subtitle');
     
@@ -772,10 +598,6 @@ function initParallax() {
     }
   });
 }
-
-// ============================================================================
-// HERO CTA FUNCTIONALITY
-// ============================================================================
 
 function initHeroCTA() {
   console.log('Initializing hero CTA functionality...');
@@ -797,11 +619,6 @@ function initHeroCTA() {
   }
 }
 
-// ============================================================================
-// GLOBAL SEARCH FUNCTIONALITY
-// ============================================================================
-
-// Search data - placeholder dataset
 const searchData = {
   monasteries: [
     {
@@ -949,7 +766,6 @@ const searchData = {
   ]
 };
 
-// Initialize global search
 function initGlobalSearch() {
   console.log('Initializing global search functionality...');
   
@@ -959,8 +775,7 @@ function initGlobalSearch() {
   if (!searchInput || !suggestionsContainer) return;
   
   let searchTimeout;
-  
-  // Handle search input
+
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.trim();
     
@@ -975,22 +790,19 @@ function initGlobalSearch() {
       performSearch(query, suggestionsContainer);
     }, 300);
   });
-  
-  // Handle search input focus
+
   searchInput.addEventListener('focus', () => {
     if (searchInput.value.trim().length >= 2) {
       suggestionsContainer.classList.add('show');
     }
   });
-  
-  // Hide suggestions when clicking outside
+
   document.addEventListener('click', (e) => {
     if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
       suggestionsContainer.classList.remove('show');
     }
   });
-  
-  // Handle search input keydown
+
   searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -1004,13 +816,11 @@ function initGlobalSearch() {
   });
 }
 
-// Perform search and show suggestions
 function performSearch(query, container) {
   const results = searchAllData(query);
   displaySuggestions(results, container);
 }
 
-// Search all data
 function searchAllData(query) {
   const allData = [
     ...searchData.monasteries,
@@ -1025,10 +835,9 @@ function searchAllData(query) {
     item.title.toLowerCase().includes(lowerQuery) ||
     item.description.toLowerCase().includes(lowerQuery) ||
     item.category.toLowerCase().includes(lowerQuery)
-  ).slice(0, 8); // Limit to 8 results
+  ).slice(0, 8); 
 }
 
-// Display search suggestions
 function displaySuggestions(results, container) {
   if (results.length === 0) {
     container.innerHTML = '<div class="suggestion-item"><p>No results found</p></div>';
@@ -1043,19 +852,18 @@ function displaySuggestions(results, container) {
         <span class="suggestion-category">${item.category}</span>
       </div>
     `).join('');
-    
-    // Add click handlers to suggestions
+
     container.querySelectorAll('.suggestion-item').forEach(item => {
       item.addEventListener('click', () => {
         const url = item.dataset.url;
         if (url.startsWith('#')) {
-          // Internal anchor link
+          
           const target = document.querySelector(url);
           if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
           }
         } else {
-          // External page
+          
           window.location.href = url;
         }
         container.classList.remove('show');
@@ -1066,20 +874,13 @@ function displaySuggestions(results, container) {
   container.classList.add('show');
 }
 
-// Redirect to search page
 function redirectToSearchPage(query) {
   window.location.href = `search.html?q=${encodeURIComponent(query)}`;
 }
 
-// ============================================================================
-// INITIALIZATION
-// ============================================================================
-
-// Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Monastery360 — Sikkim: Initializing application...');
-  
-  // Initialize all modules
+
   initModals();
   initVideos();
   initMap();
@@ -1093,8 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initParallax();
   initHeroCTA();
   initGlobalSearch();
-  
-  // Add loading animation
+
   document.body.style.opacity = '0';
   setTimeout(() => {
     document.body.style.transition = 'opacity 0.5s ease';
@@ -1104,11 +904,6 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('Monastery360 — Sikkim: Application initialized successfully!');
 });
 
-// ============================================================================
-// CSS FOR MODALS (injected dynamically)
-// ============================================================================
-
-// Inject modal styles
 const modalStyles = `
 <style>
 .modal {
@@ -1306,5 +1101,4 @@ const modalStyles = `
 </style>
 `;
 
-// Inject styles into head
 document.head.insertAdjacentHTML('beforeend', modalStyles);

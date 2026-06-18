@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- Navigation -->
+    
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -54,7 +54,6 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">Transport Booking</h1>
@@ -62,7 +61,6 @@
         </div>
     </section>
 
-    <!-- Transport Booking Section -->
     <section class="content-section">
         <div class="container">
             <div class="transport-booking-container">
@@ -192,7 +190,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -226,7 +223,7 @@
                         <li><a href="accommodation.html">Accommodation</a></li>
                         <li><a href="transport.html">Transport</a></li>
                         <li><a href="login.html">Login/SignUp</a></li>
-                        <!-- <li><a href="login.html">Sign Up</a></li> -->
+                        
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -244,16 +241,15 @@
         </div>
     </footer>
 
-    <!-- Dark Mode Toggle -->
     <button class="dark-mode-toggle" id="dark-mode-toggle">
         <i class="fas fa-moon"></i>
     </button>
 
     <script src="script.js"></script>
     <script>
-        // Transport booking page specific functionality
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Get monastery from URL parameter
+            
             const urlParams = new URLSearchParams(window.location.search);
             const monastery = urlParams.get('monastery');
             
@@ -261,7 +257,6 @@
                 document.getElementById('selected-monastery').textContent = `Destination: ${decodeURIComponent(monastery)}`;
             }
 
-            // Handle form submission
             document.getElementById('transport-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -273,15 +268,12 @@
                 const passengers = formData.get('passengers');
                 const contactNumber = formData.get('contact-number');
                 const email = formData.get('email');
-                
-                // Show confirmation modal
+
                 alert(`Transport booking request submitted!\n\nDetails:\nTransport: ${transportType}\nPickup: ${pickupLocation}\nDate: ${travelDate}\nTime: ${travelTime}\nPassengers: ${passengers}\nContact: ${contactNumber}\nEmail: ${email}\n\nWe will contact you within 24 hours to confirm your booking.`);
-                
-                // Reset form
+
                 this.reset();
             });
 
-            // Set minimum date to today
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('travel-date').setAttribute('min', today);
         });

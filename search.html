@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- Navigation -->
+    
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -64,7 +64,6 @@
         </div>
     </nav>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">Search Results</h1>
@@ -72,10 +71,9 @@
         </div>
     </section>
 
-    <!-- Search Section -->
     <section class="content-section">
         <div class="container">
-            <!-- Search Form -->
+            
             <div class="search-form-container">
                 <div class="search-form">
                     <div class="search-input-group">
@@ -101,7 +99,6 @@
                 </div>
             </div>
 
-            <!-- Search Results -->
             <div class="search-results-container">
                 <div class="search-results-header">
                     <h2 id="results-title">Search Results</h2>
@@ -109,10 +106,9 @@
                 </div>
                 
                 <div class="search-results" id="search-results">
-                    <!-- Results will be populated by JavaScript -->
+                    
                 </div>
 
-                <!-- No Results Message -->
                 <div class="no-results" id="no-results" style="display: none;">
                     <i class="fas fa-search"></i>
                     <h3>No Results Found</h3>
@@ -131,7 +127,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -166,7 +161,7 @@
                         <li><a href="transport.html">Transport</a></li>
                         <li><a href="archives.html">Digital Archives</a></li>
                         <li><a href="login.html">Login/SignUp</a></li>
-                        <!-- <li><a href="login.html">Sign Up</a></li> -->
+                        
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -184,16 +179,15 @@
         </div>
     </footer>
 
-    <!-- Dark Mode Toggle -->
     <button class="dark-mode-toggle" id="dark-mode-toggle">
         <i class="fas fa-moon"></i>
     </button>
 
     <script src="script.js"></script>
     <script>
-        // Search page specific functionality
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Get search query from URL parameter
+            
             const urlParams = new URLSearchParams(window.location.search);
             const query = urlParams.get('q');
             
@@ -202,7 +196,6 @@
                 performSearch(query);
             }
 
-            // Search form functionality
             const searchBtn = document.getElementById('search-btn');
             const searchInput = document.getElementById('search-query');
             const categoryFilter = document.getElementById('category-filter');
@@ -241,8 +234,7 @@
             function performSearch(query) {
                 const category = categoryFilter.value;
                 const sortBy = sortFilter.value;
-                
-                // Use the same search data from script.js
+
                 const allData = [
                     ...searchData.monasteries,
                     ...searchData.festivals,
@@ -258,13 +250,11 @@
                     return matchesQuery && matchesCategory;
                 });
 
-                // Sort results
                 if (sortBy === 'title') {
                     results.sort((a, b) => a.title.localeCompare(b.title));
                 } else if (sortBy === 'category') {
                     results.sort((a, b) => a.category.localeCompare(b.category));
                 }
-                // Default is relevance (original order)
 
                 displayResults(results, query);
             }
